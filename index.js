@@ -10,21 +10,22 @@ const mongoose = require('mongoose');
 
 // --> Project
 const { MONGODB } = require('./config');
-const { jsonRESPONSE } = require('./util');
+const { jsonRESPONSE } = require('./util/responseHelpers');
 
 // --> App Setup
-const PORT = 4400;
-
+const PORT = process.env.PORT || 4400;
 const httpServer = createServer(app);
 
+// --> Router Imports
+const { contactRouter, surveyRouter } = require('./routes/');
+
+// -> Setup Parser
 app.use(express.json());
-// app.use(express.json({ limit: '5mb' }));
 app.use(express.urlencoded({ limit: '5mb', extended: true }));
 
+// -> Set Static Views Directory
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'views')));
-
-// app.listen(4400, () => console.log('connected'));
 
 // --> PAGE ROUTES
 app.get('/', (req, res) => {
@@ -35,11 +36,8 @@ app.get('/', (req, res) => {
 
 // --> API ROUTES
 
-// app.listen(PORT, () => {
-// 	console.log(`Bryan's form server is running on ${PORT}`);
-// });
-
-// console.log({ MONGODB });
+app.use('/contact', contactRouter);
+app.use('/survey', surveyRouter);
 
 ////•••••••••••••••••
 // server endpoint error handling
@@ -63,6 +61,6 @@ mongoose
 		useUnifiedTopology: true,
 	})
 	.then(() => {
-		console.log('MongoDB :: CONNECTED  ::  Mongoose');
-		return httpServer.listen(PORT, () => console.log('connected'));
+		console.log('Mongoose       :: CONNECTED  :: MongoDB');
+		return httpServer.listen(PORT, () => console.log(`Express Server :: CONNECTED  :: PORT ${PORT}`));
 	});
