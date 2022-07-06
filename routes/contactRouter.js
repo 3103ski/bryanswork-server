@@ -53,9 +53,9 @@ contactRouter
 				from: email,
 				to: 'bryanswebwork@gmail.com',
 				subject: `TMS-Submission`,
-				html: `<h1>Website Inquiry</h1>
-					<h4 style={{color: 'blue'}}>${org ? `${name} with ${org} is reaching out.` : `${name} is reaching out.`}</h4>
-					<p>Details:</p>
+				html: `<h1>New Inquiry!</h1>
+					<h2 style={{color: 'blue'}}>${org ? `${name} with ${org} is reaching out.` : `${name} is reaching out.`}</h2>
+					<h4>Details</h4>
 					<ul>
 						<li>
 							Company Size: ${companySize}
@@ -64,6 +64,9 @@ contactRouter
 							Services: ${services.join(', ')}
 						</li>
 					</ul>
+					<h4>Respond To</h4>
+					<p>${email}</p>
+					<h4>Message</h4>
 					<p>${message}</p>
 					`,
 			};
