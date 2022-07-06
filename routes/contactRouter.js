@@ -54,7 +54,7 @@ contactRouter
 				to: 'bryanswebwork@gmail.com',
 				subject: `TMS-Submission`,
 				html: `<h1>New Inquiry!</h1>
-					<h2 style={{color: 'blue'}}>${org ? `${name} with ${org} is reaching out.` : `${name} is reaching out.`}</h2>
+					<p>${org ? `${name} with ${org} is reaching out.` : `${name} is reaching out.`}</p>
 					<h4>Details</h4>
 					<ul>
 						<li>
