@@ -4,6 +4,7 @@ const whitelist = [
 	`${process.env.CLIENT_URL}`,
 	`${process.env.NETLIFY_URL}`,
 	'https://themediastandard.netlify.app/contact',
+	'https://themediastandard.netlify.app',
 	'http://localhost:3000',
 	'http://13.58.190.176:3003/',
 	'http://75.2.60.5',
